@@ -1,0 +1,188 @@
+{
+  "info": {
+    "_postman_id": "a918e69e-5c42-4f3a-96e5-4e78f69d3090",
+    "name": "Employee Management API",
+    "description": "Postman collection for testing the CRUD Employee Management System REST API.\n\nBackend: Node.js + Express + Mongoose + MongoDB Atlas\nBase URL: http://localhost:5000",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "employeeId",
+      "value": "6ab39a8f32f25f0b1227646d",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. GET All Employees",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees"
+          ]
+        },
+        "description": "Retrieve list of all employee records from MongoDB Atlas."
+      },
+      "response": []
+    },
+    {
+      "name": "2. GET Employee by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees",
+            "{{employeeId}}"
+          ]
+        },
+        "description": "Retrieve details of a single employee by their MongoDB _id."
+      },
+      "response": []
+    },
+    {
+      "name": "3. POST Employee",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rahul Kumar\",\n  \"department\": \"Engineering\",\n  \"role\": \"Software Developer\",\n  \"salary\": 35000,\n  \"joinDate\": \"2026-09-23\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/employees",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees"
+          ]
+        },
+        "description": "Create a new employee record and persist in MongoDB Atlas."
+      },
+      "response": []
+    },
+    {
+      "name": "4. PUT Employee",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rahul Kumar\",\n  \"department\": \"Engineering\",\n  \"role\": \"Senior Software Engineer\",\n  \"salary\": 45000,\n  \"joinDate\": \"2026-09-23\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees",
+            "{{employeeId}}"
+          ]
+        },
+        "description": "Update an existing employee's details in MongoDB Atlas."
+      },
+      "response": []
+    },
+    {
+      "name": "5. DELETE Employee",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees",
+            "{{employeeId}}"
+          ]
+        },
+        "description": "Permanently delete an employee document from MongoDB Atlas."
+      },
+      "response": []
+    },
+    {
+      "name": "6. GET Search and Filter",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees?search=Rahul&department=Engineering",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "Rahul",
+              "description": "Search keyword for name, role, or department"
+            },
+            {
+              "key": "department",
+              "value": "Engineering",
+              "description": "Department filter"
+            }
+          ]
+        },
+        "description": "Filter employee records by search term and department."
+      },
+      "response": []
+    },
+    {
+      "name": "7. GET Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        },
+        "description": "Check if server and database connection are active."
+      },
+      "response": []
+    }
+  ]
+}
